@@ -1,5 +1,5 @@
 export default function Property() {
     return (
-        <div>Properties</div>
+        <div>My properties</div>
     )
 }
