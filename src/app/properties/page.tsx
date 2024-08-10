@@ -1,5 +1,21 @@
-export default function Property() {
+import PropertyCard from '@/components/PropertyCard';
+import properties from '@/assets/properties.json';
+
+export default function PropertiesPage() {
+    //console.log(properties)
     return (
-        <div>My properties</div>
+        <section className='px-4 py-6'>
+            <div className='container-xl lg:container m-auto px-4 py-6'>
+                {properties.length === 0 ? (<p>No Properties Found</p>) : (
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+                        {
+                            properties.map((property) => (
+                                <PropertyCard key={property._id} propertyItem={property} />
+                            ))
+                        }
+                    </div>
+                )}
+            </div>
+        </section>
     )
 }
