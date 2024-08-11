@@ -1,9 +1,16 @@
 import Link from 'next/link';
+import connectDb from '@/config/database';
+import Property from '@/app/models/property';
 
 import PropertyCard from '@/components/PropertyCard';
-import properties from '@/assets/properties.json';
-export default function HomeProperties() {
-    const recentProperties = properties.slice(0, 3);
+
+export default async function HomeProperties() {
+    await connectDb();
+    const recentProperties = await Property.find({})
+        .sort({ createdAt: -1 })// Sort by latest date
+        .limit(3)
+        .lean(); //Lean returns JS objects than Mongoos objects
+
     return (
         <>
             <section className='px-4 py-6'>
