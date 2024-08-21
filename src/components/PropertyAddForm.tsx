@@ -1,6 +1,9 @@
+import addProperty from "@/app/actions/addPrperty";
+
 export default function PropertyAddForm() {
     return (
-        <form>
+        //Form Actions can be setup this way. referencing a function
+        <form action={addProperty}>
             <h2 className="text-3xl text-center font-semibold mb-6">
                 Add Property
             </h2>
