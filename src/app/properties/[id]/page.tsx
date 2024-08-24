@@ -6,16 +6,28 @@ import { FaArrowLeft } from 'react-icons/fa';
 import connectDb from "@/config/database";
 import Property from "@/app/models/property";
 import PropertyDetails from "@/components/PropertyDetails";
+import PropertyImages from "@/components/PropertyImages";
 import axios from 'axios';
+import { ConvertToSerializableObject } from "../../../../utils/convertToObject";
 
 
 export default async function PropertyPage({ params }: {
     params: { id: Object }
 }) {
     await connectDb();
-    const property: { images: string[] } | null = await Property.findById(params.id).lean()!;
+    const propertyDoc = await Property.findById(params.id).lean();
+    const property: { images: string[] } = ConvertToSerializableObject(propertyDoc) as unknown as { images: string[] };
+    //Since its an object 'ConvertToSerializableObject(propertyDoc)' called. if array of objects .map operator used
+    /*const propertyDoc = await Property.findById(params.id).lean();
+    const property = ConvertToSerializableObject(propertyDoc) */
     //const response = await axios.get(`api/properties/${params.id}`)
     //const property = response.data;
+
+    if (!property) {
+        return (
+            <h1 className="text-center text-2xl font-bold mt-10">Property Not Found</h1>
+        )
+    }
 
     return (
         <>
@@ -39,6 +51,11 @@ export default async function PropertyPage({ params }: {
                     </div>
                 </div>
             </section>
+            <section className="bg-blue-50">
+                <div className="container m-auto py-5">
+                    <PropertyImages images={property?.images ?? []} />
+                </div>
+            </section >
         </>
 
     )

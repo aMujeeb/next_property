@@ -1,7 +1,10 @@
 import Footer from '@/components/Footer';
-import './globals.css';
 import Navbar from '@/components/Navbar';
 import AuthProvider from '@/components/AuthProvider';
+import { ToastContainer } from 'react-toastify';
+import './globals.css';
+import 'react-toastify/dist/ReactToastify.css'
+
 
 export const metadata = {
   title: 'Properties',
@@ -19,8 +22,9 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <Navbar />
-          {children}
+          <main>{children}</main>
           <Footer />
+          <ToastContainer />
         </body>
       </html>
     </AuthProvider>
