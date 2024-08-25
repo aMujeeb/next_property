@@ -16,8 +16,8 @@ export default async function addProperty(formData: FormData) {
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.userId) {
-        //throw new Error('User not authenticated');
         console.log('Session User', sessionUser?.userId);
+        throw new Error('User not authenticated');
     }
 
     //Connect to DB  

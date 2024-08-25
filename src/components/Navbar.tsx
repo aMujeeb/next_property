@@ -76,7 +76,7 @@ export default function Navbar() {
                             />
 
                             <span className="hidden md:block text-white text-2xl font-bold ml-2"
-                            >PropertyPulse</span>
+                            >PropertyRent</span>
                         </Link>
                         {/* <!-- Desktop Menu Hidden below md screens -->*/}
                         <div className="hidden md:ml-6 md:block">
