@@ -22,22 +22,17 @@ export default async function BookmarkProperty(propertyID: String) {
     const property = await getProperty({ propertyId: propertyID })
 
     let isBookMarked = false
-    let message = ''
-
-    console.log('Bookmark operation property ID-->', propertyID);
-    console.log('Bookmark operation property ID-->', property._id.toString());
-
-    //console.log('Bookmark operation property ID User size-->', user.bookMarks.length);
+    let message = '';
 
     //const foundObject = array.find(obj => obj.id === objectID);
     const foundObject = user.bookMarks.find((prop: Property) => prop._id.toString() === propertyID);
     if (foundObject) {
-        console.log('Bookmark operation property ID XXXX--> Found');
+        // console.log('Bookmark operation property ID XXXX--> Found');
         user.bookMarks.pull(property);
         message = 'Bookmark Removed';
         isBookMarked = false
     } else {
-        console.log('Bookmark operation property ID XXXX--> Not Found');
+        //console.log('Bookmark operation property ID XXXX--> Not Found');
         user.bookMarks.push(property);
         message = 'Bookmark Added';
         isBookMarked = true

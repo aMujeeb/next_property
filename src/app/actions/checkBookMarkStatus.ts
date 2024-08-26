@@ -13,7 +13,7 @@ export default async function CheckBookMarkStatus(propertyID: String) {
     if (!sessionUser || !sessionUser.userId) {
         throw new Error('User ID is required');
     }
-    console.log('Bookmark operation property ID XX-->', propertyID);
+    //console.log('Bookmark operation property ID XX-->', propertyID);
     const { userId } = sessionUser;
     const user = await User.findById(userId);
     const property = await getProperty({ propertyId: propertyID })
@@ -22,7 +22,7 @@ export default async function CheckBookMarkStatus(propertyID: String) {
     const foundObject = user.bookMarks.find(prop => prop._id.toString() === propertyID);
 
     const isBookMarked = foundObject ? true : false;
-    console.log('Bookmark operation property ID XX-->', isBookMarked);
+    //console.log('Bookmark operation property ID XX-->', isBookMarked);
     return { isBookMarked }
 }
 
