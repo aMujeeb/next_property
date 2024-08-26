@@ -1,14 +1,46 @@
-import { FaShare } from "react-icons/fa"
+'use client';
+
+//https://www.npmjs.com/package/react-share
+
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+    WhatsappShareButton,
+    EmailShareButton,
+    FacebookIcon,
+    TwitterIcon,
+    WhatsappIcon,
+    EmailIcon
+} from "react-share"
 
 interface Props {
     propertyItem: Property
 }
 
 export default function SharedButtons({ propertyItem }: Props) {
+    const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${propertyItem._id}`;
     return (
-        <button
-            className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
-            <FaShare className="mr-2" /> Share Property
-        </button>
+        <>
+            <h3 className="text-xl font-bold text-center pt-2">Share This Property</h3>
+            <div className="flex gap-3 justify-center pb-5">
+
+                <FacebookShareButton url={shareUrl} quote={propertyItem.name} hashtag={`#${propertyItem.type.replace(/\s/g, '')}ForRent`}>
+                    <FacebookIcon size={40} round={true} />
+                </FacebookShareButton>
+
+                <TwitterShareButton url={shareUrl} title={propertyItem.name} hashtags={[`${propertyItem.type.replace(/\s/g, '')}ForRent`]}>
+                    <TwitterIcon size={40} round={true} />
+                </TwitterShareButton>
+
+                <WhatsappShareButton url={shareUrl} title={propertyItem.name} separator='::'>
+                    <WhatsappIcon size={40} round={true} />
+                </WhatsappShareButton>
+
+                <EmailShareButton url={shareUrl} subject={propertyItem.name} body={`Check out for this property listing : ${shareUrl}`}>
+                    <EmailIcon size={40} round={true} />
+                </EmailShareButton>
+
+            </div >
+        </>
     )
 }
