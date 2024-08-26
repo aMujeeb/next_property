@@ -1,5 +1,6 @@
 import { FaTimes } from "react-icons/fa";
 import { FaBed, FaBath, FaRulerCombined, FaCheck, FaMapMarker } from 'react-icons/fa';
+import PropertyMap from "./PropertyMap";
 
 interface Props {
     propertyItem: Property
@@ -102,7 +103,7 @@ export default function PropertyDetails({ propertyItem }: Props) {
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-
+                <PropertyMap propertyItem={propertyItem} />
             </div>
         </main>
     )

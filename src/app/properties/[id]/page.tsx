@@ -7,6 +7,9 @@ import connectDb from "@/config/database";
 import Property from "@/app/models/property";
 import PropertyDetails from "@/components/PropertyDetails";
 import PropertyImages from "@/components/PropertyImages";
+import BookmarkButton from "@/components/BookmarkButton";
+import SharedButtons from "@/components/SharedButton";
+import PropertyContactForm from "@/components/PropertyContactForm";
 import axios from 'axios';
 import { ConvertToSerializableObject } from "../../../../utils/convertToObject";
 
@@ -48,6 +51,11 @@ export default async function PropertyPage({ params }: {
                     <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
                         {/* Property Info */}
                         <PropertyDetails propertyItem={property} />
+                        <aside className="space-y-4">
+                            <BookmarkButton propertyItem={property} />
+                            <SharedButtons propertyItem={property} />
+                            <PropertyContactForm propertyItem={property} />
+                        </aside>
                     </div>
                 </div>
             </section>
