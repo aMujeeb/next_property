@@ -2,7 +2,7 @@
 
 //https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
 
-import Property from "@/app/models/property";
+
 import connectDb from "@/config/database";
 import { revalidatePath } from "next/cache"; //Submit then update cache
 import { redirect } from "next/navigation";
@@ -96,5 +96,5 @@ export default async function addProperty(formData: FormData) {
     await newProperty.save();
 
     revalidatePath('/', 'layout');
-    redirect(`/properties/${newProperty._id}`);
+    redirect(`/import Property from "@/app/models/property";properties/${newProperty._id}`);
 }
