@@ -5,6 +5,7 @@ import Property from "../models/property";
 import Message from "../models/message";
 import { ConvertToSerializableObject } from "../../../utils/convertToObject";
 import getSessionUser from "../../../utils/getSessionUser";
+import MessageCard from "@/components/MessageCard";
 
 export default async function MessagesPage() {
     const session = await getSessionUser();
@@ -48,17 +49,12 @@ export default async function MessagesPage() {
                     <div className="space-y-4">
                         {messages.length === 0 ? (<p>You Have no messages</p>) : (
                             messages.map((message) => (
-                                <div key={message._id as React.Key} className="border-b border-gray-300 py-4">
-                                    <h2 className="text-xl font-bold">{message.property.name}</h2>
-                                    <p className="text-gray-700">{message.sender.username}</p>
-                                    <p className="text-gray-700">{message.body}</p>
-                                </div>
+                                <MessageCard key={message._id as React.Key} chatMessage={message} />
                             ))
                         )}
                     </div>
                 </div>
             </div>
-
         </section>
     )
 }
