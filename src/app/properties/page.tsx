@@ -5,8 +5,12 @@ import connectDb from '@/config/database';
 import Property from '../models/property';
 
 
-export default async function PropertiesPage() {
-    //console.log(properties)
+interface Props {
+    searchParams: Number
+}
+
+export default async function PropertiesPage({ searchParams }: Props) {
+    console.log(searchParams)
 
     await connectDb();
     const properties = await Property.find({}).lean(); //Lean returns JS objects than Mongoos objects

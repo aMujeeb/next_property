@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import HomeProperties from "@/components/HomeProperties";
 import InfoBoxes from "@/components/InfoBoxes";
+import FeaturedProperties from "@/components/FeaturedProperties";
 
 import connectDb from "@/config/database";
 
@@ -11,6 +12,7 @@ export default function Home() {
         <>
             <Hero />
             <InfoBoxes />
+            <FeaturedProperties />
             <HomeProperties />
         </>
     )
